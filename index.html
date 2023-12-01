@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alethia Georgy's Guess The Number Game</title>
+  </head>
+  
+  <body>
+    <h1>Guess the Magic Number</h1>
+    <p>A Game by Alethia Georgy</p>
+    <p>Between 0 - 100</p>
+
+    <input type="number" name="numberInput" id="numberInput" />
+    <button id="submitButton">Submit</button>
+
+    <h2 id="userMessege">You Haven't Guessed Yet</h2>
+  </body>
+
+  <script>
+    const submitButton = document.getElementById("submitButton");
+    const numberinput = document.getElementById("numberInput");
+    const userMessege = document.getElementById("userMessege");
+
+    submitButton.addEventListener("click", () => {
+      const guessedNumber = numberinput.value;
+      const message = getUserMessege(guessedNumber);
+      userMessege.innerText = message;
+    });
+
+    let magicNumber = getARandomNumber();
+
+    function getUserMessege(number) {
+      if (number > magicNumber) {
+        return "OOPS SORRY!! TRY A SMALLER NUMBER";
+      }
+
+      if (number < magicNumber) {
+        return "OOPS SORRY!! TRY A GREATER NUMBER";
+      }
+
+      if (number == magicNumber) {
+        magicNumber = getARandomNumber();
+        return "WELL DONE!!!";
+      }
+    }
+
+    function getARandomNumber() {
+      const randomNumber = Math.random() * 100;
+      const flooredNumber = Math.floor(randomNumber);
+      console.log("Shhhhhh don't tell anyone but the Magic Number is " + flooredNumber);
+      return flooredNumber;
+    }
+  </script>
+
+  <style>
+    body {
+      text-align: center;
+    }
+  </style>
+</html>
